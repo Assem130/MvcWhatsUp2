@@ -1,0 +1,93 @@
+﻿@* <h1>Login</h1>
+<p>Views / Home / Login.cshtml</p>
+<form action="/Home/Login" methode="Post">
+	<div class="form-group">
+	<label for="username">Username:</label>
+	<input type="text" id="username" name="username" class="form-control" required />
+	</div>
+	<div class="form-group">
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" class="form-control" required />
+	</div>
+	<button type="submit" class="btn btn-primary">Login</button>
+
+
+</form> *@
+
+
+@* <h1>Login</h1>
+<p>Views / Home / Login.cshtml</p>
+
+<form action="/Home/Login" method="POST" novalidate>
+    <fieldset>
+        <legend>Login Form</legend>
+
+        <!-- Username Field -->
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required minlength="3" maxlength="20" pattern="^[a-zA-Z0-9_]+$" autofocus>
+            <small>Only letters, numbers, and underscores are allowed.</small>
+        </div>
+
+        <!-- Password Field -->
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required minlength="6" maxlength="30">
+            <small>At least 6 characters required.</small>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit">Login</button>
+        </div>
+
+        <!-- Forgot Password Link -->
+        <p><a href="/Home/ForgotPassword">Forgot Password?</a></p>
+    </fieldset>
+</form> *@
+
+
+@using MvcWhatsUP.Models
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Welcome to WhatsUp! 💬</h3>
+                </div>
+                <div class="card-body">
+                    @if (ViewData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger">
+                            @ViewData["ErrorMessage"]
+                        </div>
+                    }
+
+                    <form asp-action="Login" method="post">
+                        <div class="mb-3">
+                            <label for="Username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="Username" name="Username" value="@(Model?.UserName ?? "")" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="Password" name="Password" required>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Log In</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <p class="mb-0">Don't have an account? <a asp-controller="Users" asp-action="Create">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

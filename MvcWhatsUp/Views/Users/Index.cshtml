@@ -1,0 +1,49 @@
+﻿@using MvcWhatsUP.Models
+@model List<User>
+@{
+    ViewData["Title"] = "Users";
+    int? loggedInUserId = ViewData["LoggedInUserId"] as int?;
+}
+
+<h1>Users</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr class="@(loggedInUserId.HasValue && loggedInUserId.Value == user.UserId ? "table-primary" : "")">
+                <td>
+                    @user.UserName
+                    @if (loggedInUserId.HasValue && loggedInUserId.Value == user.UserId)
+                    {
+                        <span class="badge bg-info">You</span>
+                    }
+                </td>
+                <td>@user.Email</td>
+                <td>@user.MobileNumber</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@user.UserId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@user.UserId">Delete</a>
+
+                    @if (loggedInUserId.HasValue && loggedInUserId.Value != user.UserId)
+                    {
+                        <text> | </text>
+                        <a asp-controller="Chats" asp-action="DisplayChat" asp-route-id="@user.UserId">Display Chat</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

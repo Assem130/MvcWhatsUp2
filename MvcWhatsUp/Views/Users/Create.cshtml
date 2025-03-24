@@ -1,0 +1,60 @@
+﻿@using MvcWhatsUP.Models
+@model User
+
+@{
+    ViewData["Title"] = "Create User";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4">
+                <h2 class="text-center mb-4">Create a New User</h2>
+
+                <form asp-action="Create" method="post">
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="form-label">Full Name</label>
+                        <input asp-for="UserName" class="form-control" placeholder="Enter full name" required value="@Model?.UserName" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email Address</label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Enter email" required value="@Model?.Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="mb-3">
+                        <label asp-for="MobileNumber" class="form-label">Phone Number</label>
+                        <input asp-for="MobileNumber" type="tel" class="form-control" placeholder="Enter phone number" value="@Model?.MobileNumber" />
+                        <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" required />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">Create User</button>
+                    </div>
+                </form>
+
+                <!-- Back Button -->
+                <div class="text-center mt-3">
+                    <a href="/Users/Index" class="btn btn-outline-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,4 +1,6 @@
-namespace MvcWhatsUp
+using MvcWhatsUP.Repositories;
+
+namespace MvcWhatsUP
 {
     public class Program
     {
@@ -7,6 +9,7 @@ namespace MvcWhatsUp
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddSingleton<IUsersRepository, DbUsersRepository>();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
