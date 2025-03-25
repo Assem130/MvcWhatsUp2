@@ -1,0 +1,49 @@
+﻿@using MvcWhatsUp.Models
+@model MvcWhatsUp.Models.Message
+
+@{
+    ViewData["Title"] = "Chat";
+    // Get both users from ViewData
+    User? loggedInUser = ViewData["LoggedInUser"] as User;
+    User? otherUser = ViewData["OtherUser"] as User;
+}
+
+<h1>Chat with @otherUser?.UserName</h1>
+
+<div class="mb-3">
+    <a href="/Chats/AddMessage/@otherUser?.UserId" class="btn btn-primary">Send New Message</a>
+    <a href="/Users/Index" class="btn btn-secondary">Back to Users</a>
+</div>
+
+<div class="chat-container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>From</th>
+                <th>Message</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in Model)
+            {
+                <tr>
+                    @if (message.SenderUserId == loggedInUser?.UserId)
+                    {
+                        <!-- Message sent by logged in user (left-aligned) -->
+                        <td class="text-start">@loggedInUser?.UserName</td>
+                        <td class="text-start">@message.MessageText</td>
+                        <td class="text-start">@message.SendDateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                    }
+                    else
+                    {
+                        <!-- Message sent by other user (right-aligned) -->
+                        <td class="text-end">@otherUser?.UserName</td>
+                        <td class="text-end">@message.MessageText</td>
+                        <td class="text-end">@message.SendDateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
