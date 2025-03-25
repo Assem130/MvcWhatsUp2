@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWhatsUp", "MvcWhatsUp\MvcWhatsUp.csproj", "{81DD989A-28DC-406B-9C14-2EB7900E461D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWhatsUp2", "MvcWhatsUp\MvcWhatsUp2.csproj", "{81DD989A-28DC-406B-9C14-2EB7900E461D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
